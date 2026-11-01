@@ -1,11 +1,11 @@
 <?php
 
-require_once 'cubeD4.php';
-require_once 'cubeD6.php';
-require_once 'cubeD8.php';
-require_once 'cubeD10.php';
-require_once 'cubeD12.php';
-require_once 'cubeD20.php';
+require_once 'Cube/cubeD4.php';
+require_once 'Cube/cubeD6.php';
+require_once 'Cube/cubeD8.php';
+require_once 'Cube/cubeD10.php';
+require_once 'Cube/cubeD12.php';
+require_once 'Cube/cubeD20.php';
 // Сделать шар из 25 граней.
 // Дописать heal().
 // Добавить MIN_HEALTH и метод isAlive().
