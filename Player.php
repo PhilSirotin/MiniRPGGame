@@ -31,10 +31,12 @@ class Player
   {
     $this -> name = $name;
     $this -> health = self::MAX_HEALTH;
+    $this -> maxScore = random_int(1,15);
     self::$count++;
   }
 
   public function damage() {
+    $damagePoints = 0;
     $cubeD6_1 = new cubeD6();
     $cubeD6_2 = new CubeD6();
 
@@ -45,20 +47,39 @@ class Player
       case ($resultD6_1 == $resultD6_2):
         $cubeD20 = new cubeD20();
         $resultD20 = $cubeD20 -> cubeD20R();
-        $this -> health = $this -> health - $resultD20;
+        $damagePoints = $resultD20;
+        $this -> health = $this -> health - $damagePoints;
         unset($cubeD20);
         break;
       case ($resultD6_1 > $resultD6_2):
         $cubeD20 = new cubeD20();
         $resultD20 = $cubeD20 -> cubeD20R();
         $resultD20 -= $resultD6_2;
-        $this -> health = $this -> health - $resultD20;
+        $damagePoints = $resultD20;
+        $this -> health = $this -> health - $damagePoints;
         unset($cubeD20);
         break;
       case($resultD6_1 < $resultD6_2):
         echo 'Промах' . '<br />';
         break;
       };
+
+      $damagePoints = $this -> defense($damagePoints);
+  }
+
+  public function defense(int $damagePoints)
+  {
+    $cubeD10 = new cubeD10();
+    $resultD10 = $cubeD10 -> cubeD10R();
+    if ($resultD10 >= $this -> maxScore)
+      {
+        $defenseD6 = new cubeD6();
+        $defenseResult = $defenseD6 -> cubeD6R();
+        $damagePoints -= $defenseResult;
+      } else {
+        echo 'Защита не удалась';
+      }
+      return $damagePoints;
   }
 
   public function heal(): object
