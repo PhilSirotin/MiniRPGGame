@@ -75,7 +75,7 @@ class Player
       {
         $defenseD6 = new cubeD6();
         $defenseResult = $defenseD6 -> cubeD6R();
-        $damagePoints -= $defenseResult;
+        $damagePoints = max(0,$damagePoints - $defenseResult);
       } else {
         echo 'Защита не удалась';
       }
