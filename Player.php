@@ -45,19 +45,41 @@ class Player
     return $this;
   }
 
-  public function heal(int $points) : object | int
-  {
-    
+  public function heal(): object
+{
+    $cubeD6 = new cubeD6();
+    $successScore = $cubeD6->cubeD6R();
 
+    echo 'Бросок D6 кубика: ' . $successScore . '<br />';
 
-    $this -> health = $this -> health + $points;
-    
-    if ($this -> health > self::MAX_HEALTH)
-      {
-        $this -> health = self::MAX_HEALTH;
-      }
-      return $this;
-  }
+    if ($successScore % 2 === 0) {
+        $cubeD4_1 = new cubeD4();
+        $cubeD4_2 = new cubeD4();
+
+        $resultD4_1 = $cubeD4_1->cubeD4R();
+        $resultD4_2 = $cubeD4_2->cubeD4R();
+
+        echo 'Бросок D4_1 кубика: ' . $resultD4_1 . '<br />';
+        echo 'Бросок D4_2 кубика: ' . $resultD4_2 . '<br />';
+
+        $healPoints = $resultD4_1 + $resultD4_2;
+    } else {
+        $cubeD4 = new cubeD4();
+        $healPoints = $cubeD4->cubeD4R();
+
+        echo 'Бросок D4 кубика: ' . $healPoints . '<br />';
+    }
+
+    $this->health = min(
+        self::MAX_HEALTH,
+        $this->health + $healPoints
+    );
+
+    echo 'Восстановлено здоровья: ' . $healPoints . '<br />';
+
+    return $this;
+}
+
 
   public static function getCount()
   {
