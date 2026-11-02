@@ -25,8 +25,7 @@ class Player
 
   private string $name;
   private float $health;
-  private float $cubeD100; // Куб 100
-  private int $maxScore; // Максимальное очко
+  private int $maxScore; 
 
   public function __construct(string $name)
   {
@@ -35,14 +34,31 @@ class Player
     self::$count++;
   }
 
-  public function damage($points) : object
-  {
-    $this -> health = $this -> health - $points;
+  public function damage() {
+    $cubeD6_1 = new cubeD6();
+    $cubeD6_2 = new CubeD6();
 
-    if ($this -> health < 0) {
-      $this -> health = 0;
-    }
-    return $this;
+    $resultD6_1 = $cubeD6_1 -> cubeD6R();
+    $resultD6_2 = $cubeD6_2 -> cubeD6R();
+
+    switch(true) {
+      case ($resultD6_1 == $resultD6_2):
+        $cubeD20 = new cubeD20();
+        $resultD20 = $cubeD20 -> cubeD20R();
+        $this -> health = $this -> health - $resultD20;
+        unset($cubeD20);
+        break;
+      case ($resultD6_1 > $resultD6_2):
+        $cubeD20 = new cubeD20();
+        $resultD20 = $cubeD20 -> cubeD20R();
+        $resultD20 -= $resultD6_2;
+        $this -> health = $this -> health - $resultD20;
+        unset($cubeD20);
+        break;
+      case($resultD6_1 < $resultD6_2):
+        echo 'Промах' . '<br />';
+        break;
+      };
   }
 
   public function heal(): object
@@ -93,99 +109,3 @@ class Player
 
  
 }
-
-
-
-
-// class Player 
-// {
-//   public const MAX_HEALTH = 100;
-
-//   public static $count = 0;
-
-//   private string $name;
-//   private float $health;
-//   private int $cubeD4; // Куб с 4 гранями 
-//   private int $cubeD6; // Куб с 6 гранями
-//   private int $cubeD8; // Куб с 8 гранями
-//   private int $cubeD10; // Куб с 10 гранями
-//   private int $cubeD12; // Куб с 12 гранями
-//   private int $cubeD20; // Куб с 20 гранями
-//   private float $cubeD100; // Куб 100
-//   private int $maxScore; // Максимальное очко
-
-//   public function __construct(string $name)
-//   {
-//     $this -> name = $name;
-//     $this -> health = self::MAX_HEALTH;
-//     self::$count++;
-//   }
-
-
-//   public function cubeD4R() : int 
-//   {
-//     return $this -> cubeD4 = random_int(1,4);
-//   }
-
-//   public function cubeD6R() : int
-//   {
-//     return $this -> cubeD6 = random_int(1,6);
-//   }
-
-//   public function cubeD8R() : int
-//   {
-//     return $this -> cubeD8 = random_int(1,8);
-//   }
-
-//   public function cube10R() : int
-//   {
-//     return $this -> cubeD8 = random_int(1,10);
-//   }
-
-//   public function cube12R() : int
-//   {
-//     return $this -> cubeD12 = random_int(1,12);
-//   }
-
-//   public function cube20R() : int
-//   {
-//     return $this -> cubeD20 = random_int(1,20);
-//   }
-
-//   public function damage($points) : object
-//   {
-//     $this -> health = $this -> health - $points;
-
-//     if ($this -> health < 0) {
-//       $this -> health = 0;
-//     }
-//     return $this;
-//   }
-
-//   public function heal(int $points) : object | int
-//   {
-//     $this -> maxScore = random_int(1,6);
-//     if($this -> cubeD6R() === $this -> maxScore){
-//       $this -> 
-
-//     $this -> health = $this -> health + $points;
-//     }
-//     if ($this -> health > self::MAX_HEALTH)
-//       {
-//         $this -> health = self::MAX_HEALTH;
-//       }
-//       return $this;
-//   }
-
-//   public static function getCount()
-//   {
-//     return self::$count;
-//   }
-
-//   public function info() 
-//   {
-//       return $this->name . ": " . $this->health . "/" . self::MAX_HEALTH;
-//   }
-
- 
-// }
