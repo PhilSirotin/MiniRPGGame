@@ -8,7 +8,7 @@ $P2 = new Player("Polina");
 $P1 -> damage();
 $P1 -> heal();
 
-
+echo $P1 -> isAlive();
 echo $P1 -> info() . '<br />';
 echo $P2 -> info() . '<br />';
 

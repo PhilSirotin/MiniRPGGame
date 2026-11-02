@@ -128,5 +128,13 @@ class Player
       return $this->name . ": " . $this->health . "/" . self::MAX_HEALTH;
   }
 
+  public function isAlive()
+  {
+    if ($this -> health > 0) {
+      return 'Игрок жив' . '<br />';
+    } else {
+      return 'Игрок мертв' . '<br />';
+    }
+  }
  
 }
