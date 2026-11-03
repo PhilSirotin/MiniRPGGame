@@ -6,31 +6,21 @@ require_once 'Cube/cubeD8.php';
 require_once 'Cube/cubeD10.php';
 require_once 'Cube/cubeD12.php';
 require_once 'Cube/cubeD20.php';
-// Сделать шар из 25 граней.
-// Дописать heal().
-// Добавить MIN_HEALTH и метод isAlive().
-
-
-// Добавить свойства $attack и $defense.
-// Метод attack(Player $target): бьёт другого игрока с учётом защиты и случайного разброса (random_int).
-// Консольный цикл боя: игроки бьют по очереди, пока кто-то не умрёт.
-
-// Удалить объект unset()
 
 class Player 
 {
-  public const MAX_HEALTH = 100;
 
   public static $count = 0;
 
+  private int $maxHealth;
   private string $name;
   private float $health;
   private int $maxScore; 
 
-  public function __construct(string $name)
+  public function __construct(string $name, int $maxHealth)
   {
     $this -> name = $name;
-    $this -> health = self::MAX_HEALTH;
+    $this -> maxHealth = $maxHealth;
     $this -> maxScore = random_int(1,15);
     self::$count++;
   }
@@ -113,7 +103,7 @@ public function damage(int $points)
     }
 
     $this->health = min(
-        self::MAX_HEALTH,
+        $this -> maxHealth,
         $this->health + $healPoints
     );
 
@@ -130,7 +120,7 @@ public function damage(int $points)
 
   public function info() 
   {
-      return $this->name . ": " . $this->health . "/" . self::MAX_HEALTH;
+      return $this->name . ": " . $this->health . "/" . $this -> maxHealth;
   }
 
   public function isAlive()
@@ -142,4 +132,19 @@ public function damage(int $points)
     }
   }
  
+
+  public function getName($name)
+  {
+    return $this -> name;
+  }
+
+  public function getHealth($health)
+  {
+    return $this -> health;
+  }
+
+  public function getMaxHealth() : int
+  {
+    return $this -> maxHealth;
+  }
 }
