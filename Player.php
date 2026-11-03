@@ -133,12 +133,12 @@ public function damage(int $points)
   }
  
 
-  public function getName($name)
+  public function getName() : string
   {
     return $this -> name;
   }
 
-  public function getHealth($health)
+  public function getHealth() : int
   {
     return $this -> health;
   }
