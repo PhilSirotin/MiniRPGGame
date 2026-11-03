@@ -35,37 +35,42 @@ class Player
     self::$count++;
   }
 
-  public function damage() {
+  public function attack(Player $target)
+{
     $damagePoints = 0;
-    $cubeD6_1 = new cubeD6();
+
+    $cubeD6_1 = new CubeD6();
     $cubeD6_2 = new CubeD6();
 
     $resultD6_1 = $cubeD6_1 -> cubeD6R();
     $resultD6_2 = $cubeD6_2 -> cubeD6R();
 
-    switch(true) {
-      case ($resultD6_1 == $resultD6_2):
-        $cubeD20 = new cubeD20();
-        $resultD20 = $cubeD20 -> cubeD20R();
-        $damagePoints = $resultD20;
-        $this -> health = $this -> health - $damagePoints;
-        unset($cubeD20);
-        break;
-      case ($resultD6_1 > $resultD6_2):
-        $cubeD20 = new cubeD20();
-        $resultD20 = $cubeD20 -> cubeD20R();
-        $resultD20 -= $resultD6_2;
-        $damagePoints = $resultD20;
-        $this -> health = $this -> health - $damagePoints;
-        unset($cubeD20);
-        break;
-      case($resultD6_1 < $resultD6_2):
+    if ($resultD6_1 == $resultD6_2) {
+        $cubeD20 = new CubeD20();
+        $damagePoints = $cubeD20 -> cubeD20R();
+    } elseif ($resultD6_1 > $resultD6_2) {
+        $cubeD20 = new CubeD20();
+        $damagePoints = max(0, $cubeD20 -> cubeD20R() - $resultD6_2);
+    } else {
         echo 'Промах' . '<br />';
-        break;
-      };
+        return $this;
+    }
 
-      $damagePoints = $this -> defense($damagePoints);
-  }
+    $target -> damage($damagePoints);
+    return $this;
+}
+
+public function damage(int $points)
+{
+    $points = $this -> defense($points);
+
+    $this -> health = $this -> health - $points;
+    if ($this -> health < 0) {
+        $this -> health = 0;
+    }
+
+    return $this;
+}
 
   public function defense(int $damagePoints)
   {
