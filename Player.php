@@ -16,17 +16,25 @@ class Player
   private string $name;
   private float $health;
   private int $maxScore; 
+  private string $team;
 
-  public function __construct(string $name, int $maxHealth)
+  public function __construct(string $name, int $maxHealth, string $team)
   {
     $this -> name = $name;
     $this -> maxHealth = $maxHealth;
+    $this -> health = $maxHealth;
     $this -> maxScore = random_int(1,15);
+    $this -> team = $team;
     self::$count++;
   }
 
   public function attack(Player $target)
 {
+  if ($this -> getTeam() == $target -> getTeam())
+    {
+      echo 'Огонь по своим запрещен' . '<br />';
+      return $this;
+    }
     $damagePoints = 0;
 
     $cubeD6_1 = new CubeD6();
@@ -34,6 +42,7 @@ class Player
 
     $resultD6_1 = $cubeD6_1 -> cubeD6R();
     $resultD6_2 = $cubeD6_2 -> cubeD6R();
+
 
     if ($resultD6_1 == $resultD6_2) {
         $cubeD20 = new CubeD20();
@@ -102,9 +111,9 @@ public function damage(int $points)
         echo 'Бросок D4 кубика: ' . $healPoints . '<br />';
     }
 
-    $this->health = min(
+    $this -> health = min(
         $this -> maxHealth,
-        $this->health + $healPoints
+        $this -> health + $healPoints
     );
 
     echo 'Восстановлено здоровья: ' . $healPoints . '<br />';
@@ -146,5 +155,10 @@ public function damage(int $points)
   public function getMaxHealth() : int
   {
     return $this -> maxHealth;
+  }
+
+  public function getTeam() : string
+  {
+    return $this -> team;
   }
 }

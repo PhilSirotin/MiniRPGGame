@@ -2,11 +2,13 @@
 
 require_once "Player.php";
 
-$P1 = new Player("Artem");
-$P2 = new Player("Polina");
+$P1 = new Player('Artem', 100, 'Blue');
+$P2 = new Player('Katya', 140, 'Blue');
+$P3 = new Player('Polina', 140, 'Red');
 
-$P1 -> damage();
-$P1 -> heal();
+$P1 -> attack($P2);
+$P3 -> attack($P1);
+// $P1 -> heal();
 
 echo $P1 -> isAlive();
 echo $P1 -> info() . '<br />';

@@ -5,9 +5,9 @@ require_once "Player.php";
 
 class Wizard extends Player
 {
-  public function __construct(string $name)
+  public function __construct(string $name, int $maxHealth, string $team)
   {
-    parent::__construct($name, 130);
+    parent::__construct($name, 130, $team );
   }
 
   public function defense(int $damagePoints)
@@ -27,6 +27,6 @@ class Wizard extends Player
 
   public function splash()
   {
-    
+
   }
 }
