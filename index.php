@@ -1,19 +1,17 @@
 <?php
 
-require_once "Player.php";
-require_once "Characters/Wizard.php";
+require_once __DIR__ . '/Player.php';
+require_once __DIR__ . '/Characters/Wizard.php';
 
-$P1 = new Player('Artem', 100, 'Blue');
-$P2 = new Player('Katya', 140, 'Red');
-$P3 = new Player('Polina', 140, 'Blue');
+$wizard = new Wizard('Merlin', 'Blue');
+$P1 = new Player('Polina', 130, 'Red');
+$P2 = new Player('Andrew', 190, 'Blue');
+$P3 = new Player('Murey', 180, 'Red');
 
-$P1 -> attack($P2);
-$P3 -> attack($P1);
-$P2 -> splash('Blue');
-// $P1 -> heal();
+$wizard -> splash([$wizard, $P1, $P2, $P3]);
 
-echo $P1 -> isAlive();
+echo $wizard -> info() . '<br />';
 echo $P1 -> info() . '<br />';
 echo $P2 -> info() . '<br />';
+echo $P3 -> info() . '<br />';
 
-// echo Player::getCount();

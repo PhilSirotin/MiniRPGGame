@@ -1,11 +1,11 @@
 <?php
 
 require_once "Cube/cubeD8.php";
-require_once "MiniRPGGame/Player.php";
+require_once "Player.php";
 
 class Wizard extends Player
 {
-  public function __construct(string $name, int $maxHealth, string $team)
+  public function __construct(string $name, string $team)
   {
     parent::__construct($name, 130, $team );
   }
@@ -25,8 +25,16 @@ class Wizard extends Player
       return $damagePoints;
   }
 
-  public function splash($target, int $damagePoints)
+  public function splash(array $players) : void
   {
-    return $target -> damage($damagePoints);
+    $cubeD12 = new cubeD12();
+    $damage = $cubeD12 -> cubeD12R();
+
+    foreach ($players as $player){
+      if($player -> getTeam() === $this -> getTeam()) {
+        continue;
+      }
+      $player -> damage($damage);
+    }
   }
 }
