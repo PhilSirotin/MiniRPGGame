@@ -1,7 +1,7 @@
 <?php
 
 require_once "Cube/cubeD8.php";
-require_once "Player.php";
+require_once "MiniRPGGame/Player.php";
 
 class Wizard extends Player
 {
@@ -25,8 +25,8 @@ class Wizard extends Player
       return $damagePoints;
   }
 
-  public function splash()
+  public function splash($target, int $damagePoints)
   {
-
+    return $target -> damage($damagePoints);
   }
 }
