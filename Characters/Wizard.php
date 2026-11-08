@@ -7,7 +7,7 @@ class Wizard extends Player
 {
   public function __construct(string $name, string $team)
   {
-    parent::__construct($name, 130, $team );
+    parent::__construct($name, 190, $team );
   }
 
   public function defense(int $damagePoints)

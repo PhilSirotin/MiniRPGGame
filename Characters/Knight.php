@@ -11,6 +11,6 @@ class Knight extends Player {
 
     public function defense(int $damagePoints)
     {
-        
+        return $damagePoints = max(0, $damagePoints - 10);
     }
-}
+}   
