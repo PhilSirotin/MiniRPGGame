@@ -1,8 +1,6 @@
 <?php
 
-require_once __DIR__ . '/Characters/Player.php';
-require_once __DIR__ . '/Characters/Wizard.php';
-require_once __DIR__ . '/Characters/Knight.php';
+require_once __DIR__ . '/autoload.php';
 
 $wizard = new Wizard('Merlin', 'Blue');
 $P1 = new Player('Polina', 190, 'Red');

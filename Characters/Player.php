@@ -1,12 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../Cube/cubeD4.php';
-require_once __DIR__ . '/../Cube/cubeD6.php';
-require_once __DIR__ . '/../Cube/cubeD8.php';
-require_once __DIR__ . '/../Cube/cubeD10.php';
-require_once __DIR__ . '/../Cube/cubeD12.php';
-require_once __DIR__ . '/../Cube/cubeD20.php';
-
 class Player
 {
     public static $count = 0;

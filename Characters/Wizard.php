@@ -1,8 +1,5 @@
 <?php
 
-require_once "Cube/cubeD8.php";
-require_once "Player.php";
-
 class Wizard extends Player
 {
   public function __construct(string $name, string $team)
