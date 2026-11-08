@@ -1,0 +1,12 @@
+{
+    "name": "minirpg/game",
+    "description": "A small PHP RPG project",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MiniRPG\\Characters\\": "Characters/",
+            "MiniRPG\\Cube\\": "Cube/"
+        }
+    },
+    "require": {}
+}

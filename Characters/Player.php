@@ -1,5 +1,12 @@
 <?php
 
+namespace MiniRPG\Characters;
+
+use MiniRPG\Cube\CubeD4;
+use MiniRPG\Cube\CubeD6;
+use MiniRPG\Cube\CubeD10;
+use MiniRPG\Cube\CubeD20;
+
 class Player
 {
     public static $count = 0;
@@ -28,18 +35,18 @@ class Player
         }
         $damagePoints = 0;
 
-        $cubeD6_1 = new cubeD6();
-        $cubeD6_2 = new cubeD6();
+        $cubeD6_1 = new CubeD6();
+        $cubeD6_2 = new CubeD6();
 
         $resultD6_1 = $cubeD6_1 -> cubeD6R();
         $resultD6_2 = $cubeD6_2 -> cubeD6R();
 
 
         if ($resultD6_1 == $resultD6_2) {
-            $cubeD20 = new cubeD20();
+            $cubeD20 = new CubeD20();
             $damagePoints = $cubeD20 -> cubeD20R();
         } elseif ($resultD6_1 > $resultD6_2) {
-            $cubeD20 = new cubeD20();
+            $cubeD20 = new CubeD20();
             $damagePoints = max(0, $cubeD20 -> cubeD20R() - $resultD6_2);
         } else {
             echo 'Промах' . '<br />';
@@ -64,10 +71,10 @@ class Player
 
     public function defense(int $damagePoints): mixed
     {
-        $cubeD10 = new cubeD10();
+        $cubeD10 = new CubeD10();
         $resultD10 = $cubeD10 -> cubeD10R();
         if ($resultD10 >= $this -> maxScore) {
-            $defenseD6 = new cubeD6();
+            $defenseD6 = new CubeD6();
             $defenseResult = $defenseD6 -> cubeD6R();
             $damagePoints = max(0, $damagePoints - $defenseResult);
         } else {
@@ -78,14 +85,14 @@ class Player
 
     public function heal(): object
     {
-        $cubeD6 = new cubeD6();
+        $cubeD6 = new CubeD6();
         $successScore = $cubeD6->cubeD6R();
 
         echo 'Бросок D6 кубика: ' . $successScore . '<br />';
 
         if ($successScore % 2 === 0) {
-            $cubeD4_1 = new cubeD4();
-            $cubeD4_2 = new cubeD4();
+            $cubeD4_1 = new CubeD4();
+            $cubeD4_2 = new CubeD4();
 
             $resultD4_1 = $cubeD4_1->cubeD4R();
             $resultD4_2 = $cubeD4_2->cubeD4R();
@@ -95,7 +102,7 @@ class Player
 
             $healPoints = $resultD4_1 + $resultD4_2;
         } else {
-            $cubeD4 = new cubeD4();
+            $cubeD4 = new CubeD4();
             $healPoints = $cubeD4->cubeD4R();
 
             echo 'Бросок D4 кубика: ' . $healPoints . '<br />';

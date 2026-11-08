@@ -1,6 +1,10 @@
 <?php
 
-require_once __DIR__ . '/autoload.php';
+use MiniRPG\Characters\Knight;
+use MiniRPG\Characters\Player;
+use MiniRPG\Characters\Wizard;
+
+require_once __DIR__ . '/vendor/autoload.php';
 
 $wizard = new Wizard('Merlin', 'Blue');
 $P1 = new Player('Polina', 190, 'Red');

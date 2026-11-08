@@ -1,5 +1,10 @@
 <?php
 
+namespace MiniRPG\Characters;
+
+use MiniRPG\Cube\CubeD8;
+use MiniRPG\Cube\CubeD12;
+
 class Wizard extends Player
 {
   public function __construct(string $name, string $team)
@@ -9,7 +14,7 @@ class Wizard extends Player
 
   public function defense(int $damagePoints): mixed
   {
-    $cubeD8 = new cubeD8();
+    $cubeD8 = new CubeD8();
     $resultD8 = $cubeD8 -> cubeD8R();
 
     if($resultD8 > 3) 
@@ -24,7 +29,7 @@ class Wizard extends Player
 
   public function splash(array $players) : void
   {
-    $cubeD12 = new cubeD12();
+    $cubeD12 = new CubeD12();
     $damage = $cubeD12 -> cubeD12R();
 
     foreach ($players as $player){

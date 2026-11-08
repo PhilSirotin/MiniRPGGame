@@ -1,5 +1,7 @@
 <?php
 
+namespace MiniRPG\Characters;
+
 class Knight extends Player {
 
     public function __construct(string $name, string $team)

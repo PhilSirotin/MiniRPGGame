@@ -1,6 +1,8 @@
 <?php
 
-class cubeD20
+namespace MiniRPG\Cube;
+
+class CubeD20
 {
   private int $cubeD20;
 
