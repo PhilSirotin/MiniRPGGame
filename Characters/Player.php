@@ -118,6 +118,15 @@ class Player
         return $this;
     }
 
+    public function restoreHealth(int $points): self
+{
+    $this->health = min(
+        $this->maxHealth,
+        $this->health + max(0, $points)
+    );
+
+    return $this;
+}
 
     public static function getCount()
     {
