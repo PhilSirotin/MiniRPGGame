@@ -10,7 +10,7 @@ class Wizard extends Player
     parent::__construct($name, 190, $team );
   }
 
-  public function defense(int $damagePoints)
+  public function defense(int $damagePoints): mixed
   {
     $cubeD8 = new cubeD8();
     $resultD8 = $cubeD8 -> cubeD8R();

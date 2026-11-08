@@ -9,7 +9,7 @@ class Knight extends Player {
         parent::__construct($name, 160, $team);
     }
 
-    public function defense(int $damagePoints)
+    public function defense(int $damagePoints): mixed
     {
         return $damagePoints = max(0, $damagePoints - 10);
     }
