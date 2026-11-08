@@ -13,4 +13,5 @@ class Knight extends Player {
     {
         return $damagePoints = max(0, $damagePoints - 10);
     }
+    
 }   
