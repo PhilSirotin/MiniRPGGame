@@ -13,17 +13,19 @@ class Player
 
     private int $maxHealth;
     private string $name;
-    private float $health;
+    private int $health;
     private int $maxScore;
     private string $team;
+    private float $flawa;
 
-    public function __construct(string $name, int $maxHealth, string $team)
+    public function __construct(string $name, int $maxHealth, string $team, float $flawa)
     {
         $this -> name = $name;
         $this -> maxHealth = $maxHealth;
         $this -> health = $maxHealth;
         $this -> maxScore = random_int(1, 15);
         $this -> team = $team;
+        $this -> flawa = $flawa;
         self::$count++;
     }
 
@@ -127,6 +129,17 @@ class Player
 
     return $this;
 }
+
+    public function spendFlawa($cost)
+    {
+        if ($this -> flawa < 0 || $this -> flawa < $cost)
+            {
+                return false;
+            }
+        $this -> flawa -= $cost;
+        
+        return true;
+    }
 
     public static function getCount()
     {
