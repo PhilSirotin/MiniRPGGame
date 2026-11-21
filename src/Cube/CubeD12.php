@@ -1,6 +1,6 @@
 <?php
 
-namespace MiniRPG\Cube;
+namespace App\Cube;
 
 class CubeD12
 {
